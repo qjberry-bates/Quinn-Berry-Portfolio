@@ -270,6 +270,8 @@
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-bottom: 52px;
+      position: relative;
+      z-index: 10;
       opacity: 0;
       transform: translateY(16px);
       animation: fade-up 0.65s ease forwards 0.85s;
@@ -279,7 +281,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 18px 20px;
+      padding: 24px 28px;
       transition: border-color 0.25s;
     }
     .stat-pill:hover { border-color: rgba(232,255,0,0.3); }
@@ -788,6 +790,7 @@
 
       .hero-stats {
         grid-template-columns: 1fr 1fr;
+        width: 130%;
         gap: 10px;
       }
 
@@ -990,7 +993,7 @@
               <img src="assets/cooseing_profile.jpg" alt="@cooseing Instagram — 34.5K followers" loading="lazy">
             </div>
             <div class="cs-img-wrap">
-              <img src="assets/cooseing_post.jpg" alt="Viral post — 59.8K likes" loading="lazy" style="object-fit: cover; object-position: center; margin-top: -12%; margin-bottom: -14%; height: auto; width: 100%;">
+              <img src="assets/cooseing_post.jpg" alt="Viral post — 59.8K likes" loading="lazy" style="object-fit: cover; object-position: center; margin-top: -12%; margin-bottom: -17%; height: auto; width: 100%;">
             </div>
           </div>
 
