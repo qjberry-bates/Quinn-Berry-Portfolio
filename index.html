@@ -426,7 +426,6 @@
     .cs-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 580px;
     }
 
     /* ── Case study text pane ── */
@@ -490,15 +489,14 @@
       padding: 8px;
     }
 
-    .cs-images.stack {
-      grid-template-rows: 1fr 1fr;
+   .cs-images.stack {
+      grid-template-rows: auto auto;
     }
-
+    
     .cs-images.quad {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: auto auto;
     }
-
    .cs-img-wrap {
       overflow: hidden;
       border-radius: 6px;
@@ -510,9 +508,9 @@
 
     .cs-img-wrap img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
       transition: transform 0.5s ease;
     }
     .cs-img-wrap:hover img { transform: scale(1.04); }
