@@ -460,6 +460,37 @@
 
     .cs-block { margin-bottom: 26px; }
     .cs-block:last-child { margin-bottom: 0; }
+    .cs-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .cs-stat-pill {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 28px;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .cs-stat-num {
+      font-family: var(--ff-disp);
+      font-size: clamp(22px, 2.5vw, 32px);
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .cs-stat-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
 
     .cs-block-heading {
       font-size: 11px;
@@ -929,7 +960,28 @@
 
             <div class="cs-block">
               <div class="cs-block-heading">The Results</div>
-              <p>Instagram grew from <strong>200 → 36,000+ followers</strong>. TikTok from <strong>50 → 6,800+ followers</strong>. Individual posts reached <strong>59,800+ likes</strong>. The account earned a <strong>verified badge</strong>. Max secured brand partnerships with <strong>MyProtein and Dream Recovery</strong>.</p>
+              <div class="cs-stats">
+                <div class="cs-stat-pill">
+                  <div class="cs-stat-num">200 → 36,000+</div>
+                  <div class="cs-stat-lbl">Instagram Followers</div>
+                </div>
+                <div class="cs-stat-pill">
+                  <div class="cs-stat-num">50 → 6,800+</div>
+                  <div class="cs-stat-lbl">TikTok Followers</div>
+                </div>
+                <div class="cs-stat-pill">
+                  <div class="cs-stat-num">59,800+</div>
+                  <div class="cs-stat-lbl">Likes on a Single Post</div>
+                </div>
+                <div class="cs-stat-pill">
+                  <div class="cs-stat-num">Verified Badge</div>
+                  <div class="cs-stat-lbl">Earned</div>
+                </div>
+                <div class="cs-stat-pill">
+                  <div class="cs-stat-num">MyProtein & Dream Recovery</div>
+                  <div class="cs-stat-lbl">Brand Partnerships</div>
+                </div>
+              </div>
             </div>
           </div>
 
