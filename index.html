@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Quinn Berry — Social Media Strategist. I build audiences. Here's the proof.">
+  <title>Quinn Berry — Social Media Strategist</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       RESET & BASE
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --surface:  #111111;
+      --card:     #1a1a1a;
+      --accent:   #e8ff00;
+      --text:     #ffffff;
+      --muted:    #888888;
+      --border:   #2a2a2a;
+      --ff-disp:  'Bebas Neue', sans-serif;
+      --ff-body:  'DM Sans', sans-serif;
+      --max-w:    1200px;
+      --pad-x:    40px;
+      --section:  120px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+
+    /* ─────────────────────────────────────────
+       NAVIGATION
+    ───────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 0;
+      border-bottom: 1px solid transparent;
+      transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease, padding 0.35s ease;
+    }
+
+    #nav.scrolled {
+      background: rgba(10,10,10,0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom-color: var(--border);
+      padding: 16px 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--ff-disp);
+      font-size: 26px;
+      color: var(--accent);
+      letter-spacing: 3px;
+      line-height: 1;
+      transition: opacity 0.2s;
+    }
+    .nav-logo:hover { opacity: 0.8; }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color 0.2s;
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 101;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 1.5px;
+      background: var(--text);
+      transition: all 0.3s ease;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile overlay menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+    }
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: var(--ff-disp);
+      font-size: 52px;
+      letter-spacing: 4px;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Animated grain */
+    .grain {
+      position: absolute;
+      inset: -120px;
+      width: calc(100% + 240px);
+      height: calc(100% + 240px);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.045;
+      animation: film-grain 9s steps(10) infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes film-grain {
+      0%   { transform: translate(0,0); }
+      10%  { transform: translate(-4%,-8%); }
+      20%  { transform: translate(-12%, 4%); }
+      30%  { transform: translate(6%,-20%); }
+      40%  { transform: translate(-4%, 20%); }
+      50%  { transform: translate(-14%, 8%); }
+      60%  { transform: translate(14%, 0); }
+      70%  { transform: translate(0, 12%); }
+      80%  { transform: translate(3%, 28%); }
+      90%  { transform: translate(-8%, 8%); }
+      100% { transform: translate(0,0); }
+    }
+
+    /* Subtle vignette */
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, transparent 40%, rgba(0,0,0,0.6) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      min-height: 100vh;
+      padding-top: 80px;
+      gap: 0;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 80px;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fade-up 0.65s ease forwards 0.25s;
+    }
+
+    h1.hero-name {
+      font-family: var(--ff-disp);
+      font-size: clamp(76px, 9.5vw, 136px);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      line-height: 0.88;
+      color: var(--text);
+      margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fade-up 0.75s ease forwards 0.45s;
+    }
+
+    .hero-tagline {
+      font-size: clamp(15px, 1.8vw, 19px);
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 52px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fade-up 0.65s ease forwards 0.65s;
+    }
+
+    /* Stat pills */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 52px;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fade-up 0.65s ease forwards 0.85s;
+    }
+
+    .stat-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      transition: border-color 0.25s;
+    }
+    .stat-pill:hover { border-color: rgba(232,255,0,0.3); }
+
+    .stat-num {
+      display: block;
+      font-family: var(--ff-disp);
+      font-size: clamp(28px, 3vw, 38px);
+      letter-spacing: 1.5px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-lbl {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--ff-body);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 16px 34px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      width: fit-content;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      opacity: 0;
+      animation: fade-up 0.65s ease forwards 1.05s;
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 32px rgba(232,255,0,0.28);
+    }
+
+    .btn-cta svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* Hero image panel */
+    .hero-visual {
+      position: relative;
+      overflow: hidden;
+      margin-right: calc(-1 * var(--pad-x));
+    }
+
+    .hero-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: grayscale(8%) contrast(1.05);
+      opacity: 0;
+      animation: fade-in 1s ease forwards 0.5s;
+    }
+
+    /* Dark gradient at bottom of hero image */
+    .hero-visual::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 35%;
+      background: linear-gradient(to top, var(--bg), transparent);
+      pointer-events: none;
+    }
+
+    @keyframes fade-up {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fade-in {
+      to { opacity: 1; }
+    }
+
+    /* ─────────────────────────────────────────
+       SCROLL FADE-IN
+    ───────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+
+    /* ─────────────────────────────────────────
+       SHARED SECTION LABELS
+    ───────────────────────────────────────── */
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--ff-disp);
+      font-size: clamp(52px, 6.5vw, 88px);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      line-height: 0.92;
+      color: var(--text);
+    }
+
+    /* ─────────────────────────────────────────
+       WORK / CASE STUDIES
+    ───────────────────────────────────────── */
+    #work {
+      padding: var(--section) 0;
+      background: var(--bg);
+    }
+
+    .work-header {
+      margin-bottom: 72px;
+    }
+
+    .case-study {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+
+    .cs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 580px;
+    }
+
+    /* ── Case study text pane ── */
+    .cs-text {
+      padding: 56px 52px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .cs-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      opacity: 0.85;
+    }
+
+    .cs-title {
+      font-family: var(--ff-disp);
+      font-size: clamp(26px, 2.8vw, 38px);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      line-height: 1.0;
+      color: var(--text);
+      margin-bottom: 36px;
+    }
+
+    .cs-block { margin-bottom: 26px; }
+    .cs-block:last-child { margin-bottom: 0; }
+
+    .cs-block-heading {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+      opacity: 0.7;
+    }
+
+    .cs-block p {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--muted);
+    }
+
+    .cs-block p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── Case study image pane ── */
+    .cs-images {
+      display: grid;
+      overflow: hidden;
+    }
+
+    .cs-images.stack {
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .cs-images.quad {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .cs-img-wrap {
+      overflow: hidden;
+      border-left: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+
+    .cs-img-wrap:last-child { border-bottom: none; }
+    .cs-images.quad .cs-img-wrap:nth-last-child(-n+2) { border-bottom: none; }
+
+    .cs-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.5s ease;
+    }
+    .cs-img-wrap:hover img { transform: scale(1.04); }
+
+    /* ─────────────────────────────────────────
+       SKILLS STRIP
+    ───────────────────────────────────────── */
+    #skills {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 0;
+    }
+
+    .skills-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .skill-card:hover {
+      border-color: rgba(232,255,0,0.4);
+      transform: translateY(-2px);
+    }
+
+    .skill-icon {
+      width: 28px; height: 28px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .skill-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.35;
+    }
+
+    /* ─────────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────────── */
+    #about {
+      padding: var(--section) 0;
+      background: var(--bg);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+
+    .about-text .section-title { margin-bottom: 36px; }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.82;
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+    .about-text p:last-of-type { margin-bottom: 0; }
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    .about-edu {
+      margin-top: 36px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+    .about-edu strong { color: var(--accent); }
+
+    .about-photo {
+      position: relative;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 620px;
+      object-fit: cover;
+      object-position: top center;
+      border-radius: 6px;
+      filter: grayscale(12%) contrast(1.05);
+    }
+
+    /* Accent frame */
+    .about-photo::before {
+      content: '';
+      position: absolute;
+      inset: -14px;
+      border: 1px solid rgba(232,255,0,0.2);
+      border-radius: 10px;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .about-photo img { position: relative; z-index: 1; }
+
+    /* ─────────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────────── */
+    #contact {
+      padding: var(--section) 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .contact-inner { max-width: 600px; margin: 0 auto; }
+
+    .contact-headline {
+      font-family: var(--ff-disp);
+      font-size: clamp(80px, 12vw, 140px);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      line-height: 0.88;
+      color: var(--text);
+      margin-bottom: 22px;
+    }
+
+    .contact-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 48px;
+    }
+
+    .contact-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(232,255,0,0.1);
+    }
+    .btn-outline svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ─────────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────────── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE — 1024px
+    ───────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      :root { --section: 88px; --pad-x: 32px; }
+
+      .skills-grid { grid-template-columns: repeat(3, 1fr); }
+
+      .cs-text { padding: 44px 40px; }
+
+      .about-grid { gap: 56px; }
+      .about-photo img { height: 520px; }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE — 768px (Mobile)
+    ───────────────────────────────────────── */
+    @media (max-width: 768px) {
+      :root { --section: 72px; --pad-x: 22px; }
+
+      /* Nav */
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      .hero-inner {
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+        padding-top: 72px;
+        align-items: flex-start;
+      }
+
+      .hero-content {
+        order: 2;
+        padding: 32px 0 60px;
+      }
+
+      .hero-visual {
+        order: 1;
+        height: 44vw;
+        min-height: 220px;
+        margin-right: calc(-1 * var(--pad-x));
+        margin-left: calc(-1 * var(--pad-x));
+      }
+
+      .hero-visual img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .stat-pill { padding: 14px 16px; }
+
+      /* Case Studies */
+      .cs-grid { grid-template-columns: 1fr; min-height: auto; }
+
+      .cs-text {
+        padding: 36px 28px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .cs-images.stack,
+      .cs-images.quad {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        min-height: 300px;
+      }
+
+      .cs-images.stack { grid-template-columns: 1fr 1fr; }
+
+      /* Skills */
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* About */
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .about-photo { order: -1; }
+      .about-photo img { height: 380px; }
+      .about-photo::before { inset: -8px; }
+
+      /* Contact */
+      .contact-btns { flex-direction: column; align-items: center; }
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE — 480px
+    ───────────────────────────────────────── */
+    @media (max-width: 480px) {
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .cs-images.stack, .cs-images.quad { min-height: 240px; }
+      .about-photo img { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════ -->
+  <nav id="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">QB</a>
+        <ul class="nav-links">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile overlay -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <a href="#work" class="mob-link">Work</a>
+    <a href="#about" class="mob-link">About</a>
+    <a href="#contact" class="mob-link">Contact</a>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section id="hero">
+    <div class="grain" aria-hidden="true"></div>
+    <div class="container hero-inner">
+
+      <div class="hero-content">
+        <span class="hero-eyebrow">Social Media Strategist</span>
+        <h1 class="hero-name">Quinn<br>Berry</h1>
+        <p class="hero-tagline">I build audiences. Here's the proof.</p>
+
+        <div class="hero-stats" id="heroStats">
+          <div class="stat-pill">
+            <span class="stat-num"
+                  data-target="34500"
+                  data-prefix=""
+                  data-suffix="+"
+                  data-comma="true">0</span>
+            <span class="stat-lbl">Followers Grown</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num"
+                  data-target="14900"
+                  data-prefix=""
+                  data-suffix="%"
+                  data-comma="true">0</span>
+            <span class="stat-lbl">Follower Increase</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num"
+                  data-target="70000"
+                  data-prefix="$"
+                  data-suffix="+"
+                  data-comma="true">0</span>
+            <span class="stat-lbl">Raised via Social</span>
+          </div>
+          <div class="stat-pill">
+            <span class="stat-num"
+                  data-target="150"
+                  data-prefix=""
+                  data-suffix="%"
+                  data-comma="false">0</span>
+            <span class="stat-lbl">Reel Engagement Lift</span>
+          </div>
+        </div>
+
+        <a href="#work" class="btn-cta">
+          See My Work
+          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M7 2L12 7L7 12M2 7H12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="hero-visual">
+        <img src="assets/headshot.jpg" alt="Quinn Berry — Social Media Strategist">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       WORK / CASE STUDIES
+  ══════════════════════════════════════ -->
+  <section id="work">
+    <div class="container">
+
+      <div class="work-header reveal">
+        <div class="eyebrow">Case Studies</div>
+        <h2 class="section-title">The Work</h2>
+      </div>
+
+      <!-- ── Case Study 1: Cooseing ── -->
+      <article class="case-study reveal">
+        <div class="cs-grid">
+
+          <div class="cs-text">
+            <div class="cs-label">Social Media Growth Consultant · Independent</div>
+            <h3 class="cs-title">0 to 30K: Building an Athlete's Brand from Scratch</h3>
+
+            <div class="cs-block">
+              <div class="cs-block-heading">The Challenge</div>
+              <p>Max Mancuso — competitive fitness athlete and content creator — had a compelling story but no audience. When we started, his Instagram sat at 200 followers and his TikTok at 50. The platform had no consistent identity, no content framework, and no growth strategy. The raw material was there. The architecture wasn't.</p>
+            </div>
+
+            <div class="cs-block">
+              <div class="cs-block-heading">The Approach</div>
+              <p>I conducted a full audit of comparable creators in the fitness and endurance space, identifying content gaps and audience triggers. I built a content framework centered on Max's authentic story — his transformation, his discipline, his competition journey — and established a platform-native strategy for each channel. On Instagram, I prioritized Reels with high-share triggers: motivational overlays, competition footage, and raw training content. On TikTok, I identified that Max's most relatable content was his mindset and daily discipline, not just performance highlights. I structured a posting cadence, coached on caption strategy, and tracked post insights obsessively to iterate week over week.</p>
+            </div>
+
+            <div class="cs-block">
+              <div class="cs-block-heading">The Results</div>
+              <p>Instagram grew from <strong>200 → 34,500+ followers</strong>. TikTok from <strong>50 → 6,800+ followers</strong>. Individual posts reached <strong>59,800+ likes</strong>. The account earned a <strong>verified badge</strong>. Max secured brand partnerships with <strong>MyProtein and Dream Recovery</strong>.</p>
+            </div>
+          </div>
+
+          <div class="cs-images stack">
+            <div class="cs-img-wrap">
+              <img src="assets/cooseing_profile.jpg" alt="@cooseing Instagram — 34.5K followers" loading="lazy">
+            </div>
+            <div class="cs-img-wrap">
+              <img src="assets/cooseing_post.jpg" alt="Viral post — 59.8K likes" loading="lazy">
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- ── Case Study 2: Bates Athletics ── -->
+      <article class="case-study reveal reveal-d1">
+        <div class="cs-grid">
+
+          <div class="cs-images quad">
+            <div class="cs-img-wrap">
+              <img src="assets/batesmlax_profile.jpg" alt="Bates Men's Lacrosse Instagram — 5,124 followers" loading="lazy">
+            </div>
+            <div class="cs-img-wrap">
+              <img src="assets/bates_post.jpg" alt="Player stat graphic post" loading="lazy">
+            </div>
+            <div class="cs-img-wrap">
+              <img src="assets/headstrong_post.jpg" alt="Headstrong Foundation fundraising campaign post" loading="lazy">
+            </div>
+            <div class="cs-img-wrap">
+              <img src="assets/headstrong_poster.jpg" alt="Mustache Madness campaign poster" loading="lazy">
+            </div>
+          </div>
+
+          <div class="cs-text" style="border-right: none; border-left: 1px solid var(--border);">
+            <div class="cs-label">Social Media Coordinator · Bates College · 2022–2025</div>
+            <h3 class="cs-title">Building a Program's Digital Identity — and Winning a National Competition Doing It</h3>
+
+            <div class="cs-block">
+              <div class="cs-block-heading">The Challenge</div>
+              <p>Bates Men's Lacrosse had a small, disengaged social following and no consistent content strategy. With 2,800 Instagram followers and low engagement, the program's digital presence didn't reflect the quality of the team or the culture behind it. My role was to change that — and to use social media as a vehicle for something bigger: a national fundraising campaign for cancer research.</p>
+            </div>
+
+            <div class="cs-block">
+              <div class="cs-block-heading">The Approach</div>
+              <p>I built a multi-platform content strategy from scratch across Instagram, TikTok, YouTube, and X. I produced all graphics using Adobe Illustrator and Photoshop, all video content in Premiere Pro and After Effects, and developed a consistent visual identity for the program. I designed player spotlight graphics, gameday content, campaign posters, and fundraising materials. For the Headstrong Foundation's annual Lax Stache Madness competition, I planned and executed a full social media campaign — shareable posts, in-person campus fundraising amplified through social, and a content calendar built around momentum and urgency.</p>
+            </div>
+
+            <div class="cs-block">
+              <div class="cs-block-heading">The Results</div>
+              <p>Grew Instagram following from <strong>2,800 to 5,124 (+78%)</strong>. Reel engagement up <strong>150%</strong>. Shared content up <strong>120%</strong>. Likes per post up <strong>200%</strong>. Raised <strong>$70,000+ for the Headstrong Foundation</strong> — winning the national fundraising competition <strong>three consecutive years (2022, 2023, 2024)</strong>, outperforming programs including Harvard and Penn State.</p>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SKILLS STRIP
+  ══════════════════════════════════════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="skills-label reveal">What I Bring</div>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal">
+          <svg class="skill-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 21L10 12L15 18L21 8L25 11" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="25" cy="7" r="2" fill="currentColor"/>
+          </svg>
+          <span class="skill-name">Organic Social Strategy</span>
+        </div>
+
+        <div class="skill-card reveal reveal-d1">
+          <svg class="skill-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="5" y="3" width="18" height="22" rx="2" stroke="currentColor" stroke-width="1.75"/>
+            <path d="M9 9H19M9 13.5H19M9 18H15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+          <span class="skill-name">Content Briefing &amp; Planning</span>
+        </div>
+
+        <div class="skill-card reveal reveal-d2">
+          <svg class="skill-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="16" width="5" height="9" rx="1" fill="currentColor" opacity="0.4"/>
+            <rect x="11.5" y="11" width="5" height="14" rx="1" fill="currentColor" opacity="0.7"/>
+            <rect x="20" y="5" width="5" height="20" rx="1" fill="currentColor"/>
+          </svg>
+          <span class="skill-name">Analytics &amp; Reporting</span>
+        </div>
+
+        <div class="skill-card reveal reveal-d3">
+          <svg class="skill-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M20 4L24 8L10 22L4 24L6 18L20 4Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+            <path d="M17 7L21 11" stroke="currentColor" stroke-width="1.75"/>
+          </svg>
+          <span class="skill-name">Creative Direction</span>
+        </div>
+
+        <div class="skill-card reveal reveal-d1">
+          <svg class="skill-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="3" y="3" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.75"/>
+            <rect x="16" y="3" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.75"/>
+            <rect x="3" y="16" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.75"/>
+            <rect x="16" y="16" width="9" height="9" rx="1.5" stroke="currentColor" stroke-width="1.75"/>
+          </svg>
+          <span class="skill-name">Adobe Creative Suite</span>
+        </div>
+
+        <div class="skill-card reveal reveal-d2">
+          <svg class="skill-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M23 5H5C3.9 5 3 5.9 3 7V20C3 21.1 3.9 22 5 22H11.5L14 26L16.5 22H23C24.1 22 25 21.1 25 20V7C25 5.9 24.1 5 23 5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+            <path d="M8 12H20M8 16H15" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+          <span class="skill-name">Platform-Native Storytelling</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+
+        <div class="about-text reveal">
+          <div class="eyebrow">About</div>
+          <h2 class="section-title">Strategy.<br>Execution.<br>Results.</h2>
+          <p>I'm Quinn Berry — a social media strategist who came up through the trenches of actually running accounts, not studying them. I started as a lacrosse player at Bates College, took over the team's social presence, and spent three years turning it into something the program was proud of. Along the way I discovered I had a real instinct for what moves people to follow, share, and act.</p>
+          <p>That instinct led me to consult independently — growing a fitness creator's Instagram from 200 to 30,000+ followers through obsessive data tracking and platform-native content strategy.</p>
+          <p>I'm obsessed with performance — in sport, in business, in the content I create. <strong>WHOOP's mission to unlock human performance through data</strong> isn't something I admire from the outside. It's the exact world I come from and want to build in.</p>
+          <div class="about-edu">
+            <strong>B.A. Visual Culture &amp; Graphic Design</strong> · Bates College<br>
+            Concentration in Generative AI &amp; Visual Media
+          </div>
+        </div>
+
+        <div class="about-photo reveal reveal-d2">
+          <img src="assets/headshot.jpg" alt="Quinn Berry" loading="lazy">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-inner reveal">
+        <h2 class="contact-headline">Let's<br>Talk.</h2>
+        <p class="contact-sub">Open to opportunities in Boston.</p>
+        <div class="contact-btns">
+          <a href="mailto:qjberry@gmail.com" class="btn-outline">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1" y="3" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+              <path d="M1 5.5L8 10L15 5.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            qjberry@gmail.com
+          </a>
+          <a href="https://linkedin.com/in/quinn-berry-6957a4224" target="_blank" rel="noopener noreferrer" class="btn-outline">
+            <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="1" y="1" width="14" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/>
+              <circle cx="4.5" cy="4.5" r="0.75" fill="currentColor"/>
+              <path d="M4.5 7V12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M8 12V9.5C8 8.1 8.9 7 10 7C11.1 7 12 8.1 12 9.5V12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M8 7V12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Quinn Berry</p>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════ -->
+  <script>
+    /* ── Nav scroll effect ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Hamburger / mobile menu ── */
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      const open = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', open);
+      mobileMenu.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ── Smooth scroll with nav offset ── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        const offset = nav.offsetHeight + 8;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+    });
+
+    /* ── Stat counter ── */
+    function countUp(el) {
+      const target  = parseInt(el.dataset.target, 10);
+      const prefix  = el.dataset.prefix  || '';
+      const suffix  = el.dataset.suffix  || '';
+      const comma   = el.dataset.comma === 'true';
+      const dur     = 1800;
+      const start   = performance.now();
+
+      const fmt = n => comma ? n.toLocaleString('en-US') : String(n);
+
+      function tick(now) {
+        const t  = Math.min((now - start) / dur, 1);
+        const e  = 1 - Math.pow(1 - t, 3); // cubic ease-out
+        const v  = Math.round(e * target);
+        el.textContent = prefix + fmt(v) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    /* ── IntersectionObserver: scroll reveals + stat counter ── */
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // Stat counter — fires once when stats enter viewport
+    let statsDone = false;
+    const statsObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && !statsDone) {
+        statsDone = true;
+        // Small delay so hero animation completes first
+        const delay = performance.now() < 1200 ? 950 : 0;
+        setTimeout(() => {
+          document.querySelectorAll('.stat-num').forEach(countUp);
+        }, delay);
+        statsObs.disconnect();
+      }
+    }, { threshold: 0.4 });
+
+    const heroStats = document.getElementById('heroStats');
+    if (heroStats) statsObs.observe(heroStats);
+  </script>
+
+</body>
+</html>
