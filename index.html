@@ -667,44 +667,49 @@
     .about-photo img { position: relative; z-index: 1; }
 
     /* ─────────────────────────────────────────
-       ADOBE SUITE
+       HERO ADOBE (inline with hero)
     ───────────────────────────────────────── */
-    #adobe {
-      padding: var(--section) 0;
-      background: var(--surface);
+    .hero-adobe {
+      margin-top: 48px;
+      padding-top: 36px;
       border-top: 1px solid var(--border);
+      opacity: 0;
+      animation: fade-up 0.65s ease forwards 1.25s;
     }
 
-    .adobe-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .adobe-text p {
-      font-size: 16px;
-      line-height: 1.82;
+    .hero-adobe-text {
+      font-size: 14px;
+      line-height: 1.75;
       color: var(--muted);
-      margin-bottom: 22px;
+      margin-bottom: 24px;
+      max-width: 90%;
     }
-    .adobe-text p:last-of-type { margin-bottom: 0; }
 
-    .adobe-logos {
+    .hero-adobe-logos-wrap {
+      width: 140%;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-adobe-logos {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(3, 82px);
+      gap: 10px;
     }
 
-    .adobe-logo-wrap {
-      aspect-ratio: 1;
-      border-radius: 12px;
+    .hero-adobe-logo-item {
+      width: 82px;
+      height: 82px;
+      border-radius: 10px;
       overflow: hidden;
       background: var(--card);
       border: 1px solid var(--border);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
     }
 
-    .adobe-logo-wrap img {
+    .hero-adobe-logo-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -971,50 +976,38 @@
             <path d="M7 2L12 7L7 12M2 7H12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
+
+        <div class="hero-adobe">
+          <p class="hero-adobe-text">7+ years deep in Adobe Creative Suite — Premiere Pro, After Effects, Photoshop, Illustrator, Media Encoder, Lightroom. I shoot, edit, design, and ship the content that makes it work. Strategize — create — post — analyze — repeat.</p>
+          <div class="hero-adobe-logos-wrap">
+            <div class="hero-adobe-logos">
+              <div class="hero-adobe-logo-item">
+                <img src="assets/premiere_pro_logo.jpeg" alt="Adobe Premiere Pro">
+              </div>
+              <div class="hero-adobe-logo-item">
+                <img src="assets/after_effects_logo.jpeg" alt="Adobe After Effects">
+              </div>
+              <div class="hero-adobe-logo-item">
+                <img src="assets/photoshop_logo.jpeg" alt="Adobe Photoshop">
+              </div>
+              <div class="hero-adobe-logo-item">
+                <img src="assets/illustrator_logo.jpeg" alt="Adobe Illustrator">
+              </div>
+              <div class="hero-adobe-logo-item">
+                <img src="assets/media_encoder_logo.jpeg" alt="Adobe Media Encoder">
+              </div>
+              <div class="hero-adobe-logo-item">
+                <img src="assets/lightroom_logo.jpeg" alt="Adobe Lightroom">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-visual">
         <img src="assets/headshot.jpg" alt="Quinn Berry — Social Media Strategist">
       </div>
 
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       ADOBE SUITE
-  ══════════════════════════════════════ -->
-  <section id="adobe">
-    <div class="container">
-      <div class="adobe-grid reveal">
-
-        <div class="adobe-text">
-          <div class="eyebrow">Creative Suite</div>
-          <p>7+ years deep in Adobe Creative Suite — Premiere Pro, After Effects, Photoshop, Illustrator, Media Encoder, Lightroom. At heart, I love creating and building. I shoot, edit, design, and ship the content that makes it work.</p>
-          <p>Strategize — create — post — analyze — repeat.</p>
-        </div>
-
-        <div class="adobe-logos reveal reveal-d2">
-          <div class="adobe-logo-wrap">
-            <img src="assets/premiere_pro_logo.jpeg" alt="Adobe Premiere Pro">
-          </div>
-          <div class="adobe-logo-wrap">
-            <img src="assets/after_effects_logo.jpeg" alt="Adobe After Effects">
-          </div>
-          <div class="adobe-logo-wrap">
-            <img src="assets/photoshop_logo.jpeg" alt="Adobe Photoshop">
-          </div>
-          <div class="adobe-logo-wrap">
-            <img src="assets/illustrator_logo.jpeg" alt="Adobe Illustrator">
-          </div>
-          <div class="adobe-logo-wrap">
-            <img src="assets/media_encoder_logo.jpeg" alt="Adobe Media Encoder">
-          </div>
-          <div class="adobe-logo-wrap">
-            <img src="assets/lightroom_logo.jpeg" alt="Adobe Lightroom">
-          </div>
-        </div>
-
-      </div>
     </div>
   </section>
 
