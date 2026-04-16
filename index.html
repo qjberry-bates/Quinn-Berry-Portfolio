@@ -224,7 +224,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 80px 0 80px;
+      padding: 160px 0 60px;
       overflow: visible;
     }
 
@@ -283,7 +283,7 @@
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 32px 36px;
+      padding: 20px 28px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.65), 0 2px 8px rgba(0,0,0,0.4);
       transition: border-color 0.25s;
     }
@@ -670,6 +670,11 @@
        HERO ADOBE (inline with hero)
     ───────────────────────────────────────── */
     .hero-adobe {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 0;
+      width: 140%;
       margin-top: 48px;
       padding-top: 36px;
       border-top: 1px solid var(--border);
@@ -680,19 +685,17 @@
     }
 
     .hero-adobe-text {
+      flex: 1;
       font-size: 14px;
       line-height: 1.75;
       color: var(--muted);
-      margin-bottom: 24px;
-      max-width: 90%;
+      padding-right: 24px;
     }
 
     .hero-adobe-logos-wrap {
-      width: 140%;
+      flex: 0 0 auto;
       position: relative;
       z-index: 10;
-      display: flex;
-      justify-content: flex-end;
     }
 
     .hero-adobe-logos {
