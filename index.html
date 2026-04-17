@@ -497,16 +497,6 @@
       margin-top: 6px;
     }
 
-    .cs-viral-img {
-      margin-top: 36px;
-      padding: 0 20px;
-    }
-    .cs-viral-img img {
-      width: 100%;
-      border-radius: 10px;
-      display: block;
-    }
-
     .cs-block-heading {
       font-size: 11px;
       font-weight: 700;
@@ -528,39 +518,64 @@
       font-weight: 600;
     }
 
-    /* ── Case study image pane ── */
-    .cs-images {
-      display: grid;
-      overflow: hidden;
-      gap: 8px;
-      padding: 8px;
-    }
-
-   .cs-images.stack {
-      grid-template-rows: auto auto;
-    }
-    
-    .cs-images.quad {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-   .cs-img-wrap {
-      overflow: hidden;
-      border-radius: 6px;
+    /* ── Case study image pane — scatter layout ── */
+    .cs-images-scatter {
+      padding: 44px 16px 52px;
       position: relative;
     }
 
-    .cs-img-wrap:last-child { border-bottom: none; }
-    .cs-images.quad .cs-img-wrap:nth-last-child(-n+2) { border-bottom: none; }
+    .scatter-img-wrap {
+      width: 68%;
+      position: relative;
+      border-radius: 6px;
+      overflow: hidden;
+      display: block;
+      box-shadow:
+        0 12px 36px rgba(0,0,0,0.65),
+        0 4px 12px rgba(0,0,0,0.45);
+    }
 
-    .cs-img-wrap img {
+    .scatter-img-wrap img {
       width: 100%;
       height: auto;
-      object-fit: contain;
-      object-position: center;
+      display: block;
       transition: transform 0.5s ease;
     }
-    .cs-img-wrap:hover img { transform: scale(1.04); }
+
+    .scatter-img-wrap:hover img { transform: scale(1.03); }
+
+    /* First image: furthest back, left-leaning */
+    .scatter-img-wrap:nth-child(1) {
+      transform: rotate(-2.5deg);
+      z-index: 1;
+      margin-left: 4%;
+    }
+
+    /* Second image: over first, right side */
+    .scatter-img-wrap:nth-child(2) {
+      transform: rotate(2deg);
+      z-index: 2;
+      margin-left: auto;
+      margin-right: 4%;
+      margin-top: -21%;
+    }
+
+    /* Third image: over second, left side */
+    .scatter-img-wrap:nth-child(3) {
+      transform: rotate(-1.5deg);
+      z-index: 3;
+      margin-left: 8%;
+      margin-top: -21%;
+    }
+
+    /* Fourth image: topmost, right side */
+    .scatter-img-wrap:nth-child(4) {
+      transform: rotate(2.8deg);
+      z-index: 4;
+      margin-left: auto;
+      margin-right: 8%;
+      margin-top: -21%;
+    }
 
     /* ─────────────────────────────────────────
        SKILLS STRIP
@@ -873,14 +888,11 @@
         border-bottom: 1px solid var(--border);
       }
 
-      .cs-images.stack,
-      .cs-images.quad {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-        min-height: 300px;
+      .scatter-img-wrap:nth-child(2),
+      .scatter-img-wrap:nth-child(3),
+      .scatter-img-wrap:nth-child(4) {
+        margin-top: -14%;
       }
-
-      .cs-images.stack { grid-template-columns: 1fr 1fr; }
 
       /* Skills */
       .skills-grid { grid-template-columns: repeat(2, 1fr); }
@@ -904,7 +916,6 @@
     ───────────────────────────────────────── */
     @media (max-width: 480px) {
       .hero-stats { grid-template-columns: 1fr 1fr; }
-      .cs-images.stack, .cs-images.quad { min-height: 240px; }
       .about-photo img { height: 300px; }
     }
   </style>
@@ -1087,12 +1098,18 @@
             </div>
           </div>
 
-          <div class="cs-images stack">
-            <div class="cs-img-wrap">
+          <div class="cs-images-scatter">
+            <div class="scatter-img-wrap">
               <img src="assets/cooseing_profile.jpg" alt="@cooseing Instagram — 34.5K followers" loading="lazy">
             </div>
-            <div class="cs-img-wrap">
-              <img src="assets/cooseing_viral_post.jpeg" alt="Viral post — 100K+ likes" loading="lazy">
+            <div class="scatter-img-wrap">
+              <img src="assets/cooseing_viral_post.jpeg" alt="Viral Instagram post — 100K+ likes" loading="lazy">
+            </div>
+            <div class="scatter-img-wrap">
+              <img src="assets/cooseing_tiktok.jpeg" alt="@cooseing TikTok profile" loading="lazy">
+            </div>
+            <div class="scatter-img-wrap">
+              <img src="assets/cooseing_viral_tt_post.jpeg" alt="Viral TikTok post" loading="lazy">
             </div>
           </div>
 
@@ -1103,15 +1120,18 @@
       <article class="case-study reveal reveal-d1">
         <div class="cs-grid">
 
-          <div class="cs-images stack">
-            <div class="cs-img-wrap">
+          <div class="cs-images-scatter">
+            <div class="scatter-img-wrap">
               <img src="assets/batesmlax_profile.jpg" alt="Bates Men's Lacrosse Instagram — 5,124 followers" loading="lazy">
             </div>
-            <div class="cs-img-wrap">
+            <div class="scatter-img-wrap">
               <img src="assets/bates_post.jpg" alt="Player stat graphic post" loading="lazy">
             </div>
-            <div class="cs-img-wrap">
+            <div class="scatter-img-wrap">
               <img src="assets/headstrong_poster.jpg" alt="Mustache Madness campaign poster" loading="lazy">
+            </div>
+            <div class="scatter-img-wrap">
+              <img src="assets/bates_viral_post.jpeg" alt="Viral Bates lacrosse post" loading="lazy">
             </div>
           </div>
 
@@ -1156,9 +1176,6 @@
               </div>
             </div>
 
-            <div class="cs-viral-img">
-              <img src="assets/bates_viral_post.jpeg" alt="Viral Bates lacrosse post" loading="lazy">
-            </div>
           </div>
 
         </div>
